@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        <!-- 待办事宜 -->
+        <!-- 分为待审 待阅 已办 搜索功能 -->
+        <!-- 每个都对应一个列表，点击进去就是对应的信息(附件，全文，流程记录，查看基本信息),可以收藏，转发 -->
+        <!-- 列表信息:内容，提报人，时间，类型，头像 -->
+
+        <!--公文-->
+        <!-- 本单位公文，所有公文，待审公文，分类，搜索，常用查询 -->
+        <!-- 常用查询:所有公文，我起草的，待我审的，我已审的 -->
+        <!-- 分类:按照部门分类（集团级，BU/SBU级，部门级，常州工厂）---（集团和常州区分红头文件，黑头文件） -->
+        <!-- 对应列表，列表信息:图标，内容，部门，时间，浏览人数 -->
+        <!-- 详情:阅读全文，查看基本信息，流程记录，收藏，分享 -->
+
+        <!-- 福田新闻 -->
+        <!-- 最新新闻, 分类，搜索，常用查询 -->
+        <!-- 列表信息:图片，内容，上传人，上传时间，浏览人数 -->
+        <!-- 详情:标题，图文搭配，收藏 -->
+        <!-- 分类:集团级，BU/SBU级，部门级，常州工厂，福田戴姆勒/BFDA -->
+        <!-- 常用查询:所有新闻，我上传的，待我审的，我已审的，置顶新闻  -->
+
+        <!-- 制度管理 -->
+        <!-- 制度管理, 分类，搜索，常用查询 -->
+        <!-- 列表信息:图片，内容，部门，浏览人数 -->
+        <!-- 详情:标题，生效时间，文件编号，附件，收藏 -->
+        <!-- 附件查看 -->
+        <!-- 分类:集团级，BU/SBU级，部门级，常州工厂，福田戴姆勒/BFDA -->
+        <!-- 常用查询:所有制度，我起草的，待我审的，我已审的  -->
+
+        <!-- OA知识中心 -->
+        <!-- 所有文档, 我的文档，分类，搜索，常用查询-->
+        <!-- 列表信息:图片，内容，发布人，发布时间，浏览人数 -->
+        <!-- 详情:内容，附件，收藏，评价 -->
+        <!-- 附件查看 -->
+        <!-- 常用查询:所有制度，我起草的，待我审的，我已审的  -->
+
+        <!--OA调查问卷  -->
+        <!-- 所有问卷，我参与的，调查结果，搜索-->
+        <!-- 列表:已参与人数，结束时间，调查标题 -->
+        <!-- 详情:问卷调查状态,参与人数，内容，标题 -->
+      </p>
+    </div>
+    <script>
+      var arr = [
+        3,
+        5,
+        12,
+        42,
+        56,
+        85,
+        46,
+        67,
+        45,
+        65,
+        345,
+        23,
+        123,
+        213,
+        1324,
+        765,
+        1,
+        45455,
+        236,
+        98,
+        907,
+        896,
+        987,
+        5654,
+        3452,
+      ];
+      var quickSort = function (arr) {
+        if (arr.length <= 1) {
+          return arr;
+        }
+        //向下取整
+        //12---取中间值的下标
+        var Index = Math.floor(arr.length / 2);
+        //123--根据下标截取出中间值
+        var pivot = arr.splice(Index, 1)[0];
+        var left = [],
+          right = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] < pivot) {
+            left.push(arr[i]);
+          } else {
+            right.push(arr[i]);
+          }
+        }
+        //拼接完成---左中右
+        return quickSort(left).concat([pivot], quickSort(right));
+      };
+      console.log(quickSort(arr), "快速排序");
+      // 插入排序
+      function Insertion(arr) {
+        //数组长度
+        let len = arr.length;
+        let preIndex, current;
+        for (var i = 1; i < len; i++) {
+          //下标---0
+          preIndex = i - 1;
+          //当前项
+          current = arr[i];
+          //下标大于0并前面一个大于当前的。
+          while (preIndex >= 0 && current < arr[preIndex]) {
+            //就要向前推一位。
+            arr[preIndex + 1] = arr[preIndex];
+          }
+        }
+      }
+
+      function bubble(arr) {
+        //外层循环
+        for (var i = 0; i < arr.length - 1; i++) {
+          //内层循环
+          for (var j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+              // 如果前面的数大，放到后面(当然是从小到大的冒泡排序)
+              var temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+        return arr;
+      }
+      console.log(bubble(arr));
+    </script>
+  </body>
+</html>
