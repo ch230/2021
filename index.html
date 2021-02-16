@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      html,body {
+        height: 100%;
+        width: 100%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+.app{
+  height: 100%;
+  width: 100%;
+}
+      .content {
+        color: #eb7979;
+        font-size: 10px;
+      }
+
+      .bg {
+        background: url('./img/a.jpg');
+        background-size: 100%;
+        height: 650px;
+        text-align: center;
+        line-height: 650px;
+      }
+
+      .bg-blur {
+        float: left;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        -webkit-filter: blur(15px);
+        -moz-filter: blur(15px);
+        -o-filter: blur(15px);
+        -ms-filter: blur(15px);
+        filter: blur(7px);
+      }
+
+      .content-front {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        height: 600px;
+        line-height: 600px;
+        text-align: center;
+      }
+
+      .dog {
+        position: absolute;
+        top: 186px;
+        margin-left: 400px;
+        text-align: center;
+        color: #ca6161;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="bg bg-blur"></div>
+      <p class="count content content-front"></p>
+      <p class="dog"></p>
+    </div>
+
+    <script>
+      var ds=new Date();
+      var year=ds.getFullYear();
+      var month=ds.getMonth()+1;
+      var date=ds.getDate();
+      window.onload = function () {
+        countDown();
+        function addZero(i) {
+          return i < 10 ? "0" + i : i + "";
+        }
+        function countDown() {
+          var end = year+'/'+month+'/'+date+',17:00:00';
+          var nowtime = new Date();
+          var endtime = new Date(end);
+          var lefttime = parseInt(
+            (endtime.getTime() - nowtime.getTime()) / 1000
+          );
+          var d = parseInt(lefttime / (24 * 60 * 60));
+          var h = parseInt((lefttime / (60 * 60)) % 24);
+          var m = parseInt((lefttime / 60) % 60);
+          var s = parseInt(lefttime % 60);
+          d = addZero(d);
+          h = addZero(h);
+          m = addZero(m);
+          s = addZero(s);
+          document.querySelector(
+            ".count"
+          ).innerHTML = ` ${d}天 ${h} 时 ${m} 分 ${s} 秒`;
+          if (lefttime <= 0) {
+            document.querySelector(".count").innerHTML = "快跑~~~~";
+            return;
+          }
+          setTimeout(countDown, 1000);
+        }
+      };
+    </script>
+  </body>
+</html>
